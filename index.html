@@ -2,10 +2,137 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>JulexByte</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JulexByte | Enlaces Oficiales</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #1a1c29 0%, #0a0b10 100%);
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 450px;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: 800;
+      color: #0a0b10;
+      margin: 0 auto 16px;
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
+      border: 3px solid #ffffff;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .tagline {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.25s ease-in-out;
+      backdrop-filter: blur(8px);
+    }
+
+    .link-card:hover {
+      background: rgba(0, 242, 254, 0.15);
+      border-color: #00f2fe;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 242, 254, 0.2);
+    }
+
+    .link-card.primary {
+      background: linear-gradient(90deg, #ff0055 0%, #ff5500 100%);
+      border: none;
+      box-shadow: 0 4px 15px rgba(255, 0, 85, 0.3);
+    }
+
+    .link-card.primary:hover {
+      box-shadow: 0 8px 25px rgba(255, 0, 85, 0.5);
+    }
+
+    .footer {
+      margin-top: 35px;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+  </style>
 </head>
-<body style="font-family: sans-serif; text-align: center; padding-top: 50px; background-color: #111; color: #fff;">
-  <h1>Sitio web de Julexxxxx</h1>
-  <p>Próximamente en vivo.</p> <br> Con eso ala vergaa
+<body>
+
+  <div class="container">
+    <div class="avatar">J</div>
+    <h1>Julex</h1>
+    <p class="tagline">Gameplays • Momentos • Julexbyte</p>
+
+    <div class="links">
+      <a href="https://youtube.com" target="_blank" class="link-card primary">
+        🔴 Canal Principal de YouTube
+      </a>
+
+      <a href="https://youtube.com" target="_blank" class="link-card">
+        🎮 Julex Extra (Directos & Clips)
+      </a>
+
+      <a href="#" class="link-card">
+        ⚡ Código de Creador Fortnite
+      </a>
+
+      <a href="#" class="link-card">
+        🌐 Servicios & Soporte Julexbyte
+      </a>
+    </div>
+
+    <div class="footer">
+      © Julexbyte • Todos los derechos reservados
+    </div>
+  </div>
+
 </body>
 </html>

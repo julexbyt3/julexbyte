@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7eee8">
+  <meta name="description" content="Una carta para mi princesita. Desde aquel 23 de febrero de 2022, con amor, recuerdos, disculpas y la esperanza de escribir nuevos capítulos.">
+  <title>Para mi princesita ♡</title>
+  <style>
+    :root {
+      --ink: #47333c;
+      --muted: #836b73;
+      --rose: #9b566d;
+      --rose-deep: #773b52;
+      --dusty: #d6a2ab;
+      --gold: #b99964;
+      --paper: #fffcf7;
+      --canvas: #f8eee9;
+      --line: rgba(128, 79, 89, .17);
+      --shadow: 0 30px 90px rgba(100, 54, 62, .13);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body { margin: 0; color: var(--ink); background: var(--canvas); font-family: "Trebuchet MS", "Segoe UI", sans-serif; overflow-x: hidden; }
+    button { font: inherit; }
+    a { color: inherit; }
+    ::selection { color: #fff; background: var(--rose); }
+    .progress { position: fixed; inset: 0 auto auto 0; width: 0; height: 3px; z-index: 20; background: linear-gradient(90deg, #b96e86, #e3a9b5, #ad8759); transition: width .1s linear; }
+    .site-shell { position: relative; isolation: isolate; overflow: hidden; }
+    .site-shell::before, .site-shell::after { content: ""; pointer-events: none; position: absolute; z-index: -1; border-radius: 50%; filter: blur(12px); }
+    .site-shell::before { top: -300px; left: -260px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(247, 207, 201, .54), transparent 68%); }
+    .site-shell::after { top: 800px; right: -300px; width: 800px; height: 800px; background: radial-gradient(circle, rgba(247, 199, 210, .29), transparent 70%); }
+
+    .topbar { height: 83px; max-width: 1280px; margin: 0 auto; padding: 0 6%; display: flex; justify-content: space-between; align-items: center; gap: 15px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-family: Georgia, serif; font-style: italic; font-size: 18px; color: var(--rose-deep); white-space: nowrap; }
+    .brand-mark { width: 30px; height: 30px; border: 1px solid rgba(155, 86, 109, .42); border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 20px; }
+    .top-date { color: var(--muted); font-family: Georgia, serif; font-style: italic; font-size: 14px; letter-spacing: .06em; }
+    .music-dock { position: fixed; bottom: max(24px, env(safe-area-inset-bottom)); right: 24px; z-index: 30; display: flex; flex-direction: column; align-items: flex-end; gap: 9px; }
+    .music-trigger { position: relative; display: inline-flex; justify-content: center; align-items: center; gap: 12px; padding: 17px 24px; color: #fff; background: linear-gradient(125deg, #ae5a78, #7c3955); border: 1px solid #96506a; border-radius: 999px; box-shadow: 0 12px 31px rgba(101, 41, 65, .36); font-size: 15px; font-weight: 700; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease; white-space: nowrap; }
+    .music-trigger::before { content: ""; position: absolute; inset: -5px; border: 1px solid rgba(173, 83, 119, .42); border-radius: 999px; pointer-events: none; animation: music-pulse 3.2s ease-in-out infinite; }
+    .music-trigger:hover { transform: translateY(-4px); box-shadow: 0 17px 35px rgba(101, 41, 65, .44); }
+    .music-trigger:focus-visible { outline: 3px solid #b97c91; outline-offset: 7px; }
+    .music-trigger .music-note { font: 27px/1 Georgia, serif; }
+    .music-trigger.is-playing { background: linear-gradient(125deg, #813d59, #51263d); }
+    .music-trigger.is-playing .music-note { animation: note-dance 1.5s ease-in-out infinite; }
+    .music-status { max-width: min(325px, calc(100vw - 32px)); margin: 0; padding: 11px 15px; border-radius: 13px; background: #fffcf8; color: var(--rose-deep); box-shadow: 0 8px 28px rgba(78, 34, 54, .2); border: 1px solid rgba(155, 86, 109, .2); font-size: 12px; line-height: 1.5; text-align: right; }
+    .music-status[hidden] { display: none; }
+    @keyframes music-pulse { 0%, 100% { opacity: .32; transform: scale(1); } 50% { opacity: .8; transform: scale(1.055); } }
+    @keyframes note-dance { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(9deg); } }
+
+    .hero { min-height: min(760px, calc(100svh - 83px)); max-width: 1280px; margin: auto; padding: 62px 6% 116px; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr); gap: 3vw; align-items: center; }
+    .hero-copy { position: relative; z-index: 2; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 12px; color: var(--rose); font-size: 12px; font-weight: bold; letter-spacing: .22em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 29px; height: 1px; background: currentColor; }
+    h1 { max-width: 680px; margin: 27px 0 19px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(56px, 7.7vw, 106px); line-height: .99; letter-spacing: -.055em; font-weight: 400; }
+    h1 em { color: var(--rose); font-weight: 400; }
+    .hero-subtitle { max-width: 470px; font-family: Georgia, serif; font-size: clamp(19px, 2vw, 24px); line-height: 1.55; color: #715661; font-style: italic; }
+    .hero-meta { margin: 29px 0 34px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; color: var(--rose-deep); font-size: 13px; letter-spacing: .035em; }
+    .hero-meta .divider-dot { color: var(--dusty); }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 13px; }
+    .primary-btn, .secondary-btn { border-radius: 999px; padding: 16px 25px; cursor: pointer; transition: transform .2s, box-shadow .2s, background .2s; }
+    .primary-btn { border: 1px solid var(--rose-deep); background: var(--rose-deep); color: white; box-shadow: 0 13px 26px rgba(119, 59, 82, .17); }
+    .secondary-btn { border: 1px solid rgba(119, 59, 82, .26); background: rgba(255, 255, 255, .28); color: var(--rose-deep); }
+    .primary-btn:hover, .secondary-btn:hover, .envelope-button:hover { transform: translateY(-3px); }
+    .primary-btn:focus-visible, .secondary-btn:focus-visible, .envelope-button:focus-visible, .backtop:focus-visible { outline: 3px solid #b97c91; outline-offset: 4px; }
+    .secondary-btn:hover { background: #fff7f4; }
+
+    .hero-art { position: relative; display: grid; place-items: center; min-height: 510px; }
+    .art-aura { position: absolute; width: min(100%, 480px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at center, #f0cfd0 0%, #eed6d0 46%, rgba(236, 208, 207, .05) 70%); }
+    .art-ring { position: absolute; width: min(96%, 450px); aspect-ratio: 1; border: 1px solid rgba(149, 89, 105, .19); border-radius: 50%; transform: rotate(-17deg) scaleX(.88); }
+    .art-ring::after { content: ""; position: absolute; inset: 16px; border: 1px dashed rgba(149, 89, 105, .17); border-radius: 50%; }
+    .art-spark { position: absolute; color: var(--gold); font-family: Georgia, serif; font-size: 30px; z-index: 2; }
+    .art-spark.s1 { top: 58px; right: 75px; }
+    .art-spark.s2 { bottom: 66px; left: 28px; font-size: 18px; }
+    .art-spark.s3 { top: 70px; left: 72px; font-size: 18px; }
+    .envelope-button { position: relative; border: 0; background: transparent; padding: 0; cursor: pointer; filter: drop-shadow(0 28px 23px rgba(111, 65, 73, .20)); transform: rotate(-7deg); transition: transform .25s ease; width: min(90%, 424px); aspect-ratio: 1.25; }
+    .envelope-button:hover { transform: rotate(-3deg) translateY(-4px); }
+    .envelope { position: absolute; inset: 12% 0 0; background: #e9c9be; border-radius: 8px; overflow: hidden; box-shadow: inset 0 0 0 1px rgba(150, 89, 87, .12); }
+    .envelope::before { content: ""; position: absolute; inset: 0; background: #f8e1d9; clip-path: polygon(0 0, 50% 60%, 100% 0); z-index: 3; filter: drop-shadow(0 5px 3px rgba(103, 51, 61, .11)); }
+    .envelope::after { content: ""; position: absolute; inset: 0; background: linear-gradient(145deg, #f2d3c7 20%, #dfb6af); clip-path: polygon(0 100%, 50% 45%, 100% 100%); z-index: 4; }
+    .env-corner { position: absolute; inset: 0; background: #eac8bf; clip-path: polygon(0 0, 50% 60%, 0 100%); z-index: 2; }
+    .env-corner.right { transform: scaleX(-1); }
+    .letter-peek { position: absolute; top: 0; left: 15%; width: 70%; height: 80%; background: #fffbf5; border-radius: 4px; transform: translateY(-17%) rotate(2deg); box-shadow: 0 3px 12px rgba(66, 32, 44, .1); display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding-top: 20px; z-index: -1; color: var(--rose); }
+    .letter-peek .little-heart { font-size: 38px; }
+    .letter-peek small { font-family: Georgia, serif; font-style: italic; font-size: 17px; }
+    .seal { position: absolute; width: 72px; height: 72px; top: 58%; left: 50%; z-index: 6; transform: translate(-50%, -50%); background: #a7576f; color: #f8d7dc; box-shadow: 0 5px 10px rgba(89, 42, 58, .23), inset 0 0 0 5px #a7576f, inset 0 0 0 6px rgba(255, 224, 229, .27); border-radius: 50%; display: grid; place-items: center; font-family: Georgia, serif; font-size: 32px; }
+    .art-note { position: absolute; right: 16px; bottom: 27px; transform: rotate(7deg); font: italic 16px Georgia, serif; color: #9d6371; }
+
+    .chapter-intro { text-align: center; padding: 45px 16px 60px; }
+    .chapter-intro .tiny-heart { color: var(--rose); font-size: 25px; }
+    .chapter-intro p { margin: 15px 0 0; font: italic 19px Georgia, serif; color: var(--muted); }
+
+    .letter-wrap { padding: 0 20px 110px; }
+    .letter-page { position: relative; width: min(100%, 870px); margin: auto; background: var(--paper); border: 1px solid rgba(180, 127, 130, .22); box-shadow: var(--shadow); padding: 80px clamp(28px, 9vw, 104px) 91px; }
+    .letter-page::before, .letter-page::after { content: ""; position: absolute; pointer-events: none; inset: 14px; border: 1px solid rgba(177, 135, 115, .18); }
+    .letter-page::after { inset: 21px; border: 0; background-image: radial-gradient(#d5a6a2 1px, transparent 1px); background-size: 18px 18px; opacity: .04; }
+    .letter-content { position: relative; z-index: 1; }
+    .letter-date { font: italic 14px Georgia, serif; letter-spacing: .05em; color: var(--muted); text-align: right; }
+    .letter-salutation { margin: 54px 0 26px; font: italic 39px Georgia, serif; letter-spacing: -.03em; color: var(--rose-deep); }
+    .letter-content p { margin: 0 0 24px; font-family: Georgia, "Times New Roman", serif; font-size: 18px; line-height: 1.96; letter-spacing: .003em; }
+    .letter-content p em { color: var(--rose-deep); }
+    .letter-content h2 { margin: 58px 0 24px; font: italic 36px Georgia, serif; font-weight: normal; letter-spacing: -.025em; line-height: 1.2; color: var(--rose-deep); }
+    .letter-content .first-letter::first-letter { font-size: 3.2em; line-height: .8; float: left; padding-right: 9px; padding-top: 6px; color: var(--rose); }
+    .ornament { margin: 45px auto; display: flex; align-items: center; justify-content: center; gap: 18px; color: #bb8292; font: 23px Georgia, serif; }
+    .ornament::before, .ornament::after { content: ""; height: 1px; width: 76px; background: linear-gradient(90deg, transparent, #d9bec1); }
+    .ornament::after { transform: rotate(180deg); }
+    .quote { padding: 25px 30px; margin: 36px 0 40px; background: #fbf3ef; border-left: 2px solid #ce9ba8; font: italic clamp(22px, 3.3vw, 28px)/1.55 Georgia, serif; color: var(--rose-deep); }
+    .love-list { margin: 34px 0; padding: 29px 33px; background: #faf2ee; color: #724e5e; font: italic 21px/1.85 Georgia, serif; border-radius: 2px; text-align: center; }
+    .signature { text-align: right; padding-top: 36px; font-family: Georgia, serif; }
+    .signature p { margin-bottom: 12px; }
+    .signature .sign-name { display: block; font-style: italic; font-size: 31px; color: var(--rose-deep); }
+    .signature .sign-spark { display: block; font-size: 25px; margin-top: 8px; color: #b67d8d; }
+    .end-flower { margin: 50px auto 0; width: 80px; height: 20px; text-align: center; color: var(--dusty); }
+
+    .album { width: min(1150px, calc(100% - 40px)); margin: 10px auto 117px; text-align: center; }
+    .album-eyebrow { color: var(--rose); font-weight: bold; text-transform: uppercase; letter-spacing: .22em; font-size: 12px; }
+    .album h2 { margin: 17px 0; color: var(--rose-deep); font: italic 400 clamp(38px, 5vw, 66px)/1.11 Georgia, serif; letter-spacing: -.045em; }
+    .album-intro { max-width: 550px; margin: 0 auto 52px; color: var(--muted); font: italic 18px/1.6 Georgia, serif; }
+    .photo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 27px; }
+    .photo-card { min-width: 0; margin: 0; padding: 13px; background: #fffcf8; box-shadow: 0 11px 34px rgba(114, 63, 81, .1); transform: rotate(-1deg); transition: transform .3s ease, box-shadow .3s ease; }
+    .photo-card:nth-child(2n) { transform: rotate(1deg); }
+    .photo-card:nth-child(3n) { transform: rotate(-.5deg); }
+    .photo-card:hover { transform: translateY(-5px) rotate(0); box-shadow: 0 20px 42px rgba(114, 63, 81, .15); }
+    .photo-frame { position: relative; width: 100%; aspect-ratio: 4 / 4.3; overflow: hidden; background: linear-gradient(145deg, #f6e6e2, #efd7d5 75%, #e9c5c7); }
+    .photo-frame img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .4s ease; z-index: 1; }
+    .photo-frame.has-photo img { opacity: 1; }
+    .photo-empty { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #b67f8d; padding: 22px; }
+    .photo-empty .placeholder-flower { font: 53px Georgia, serif; opacity: .8; }
+    .photo-empty::before { content: ""; position: absolute; inset: 15px; border: 1px solid rgba(149, 89, 105, .18); pointer-events: none; }
+    .photo-empty::after { content: "✦"; position: absolute; bottom: 10%; left: 50%; transform: translateX(-50%); color: rgba(155, 86, 109, .3); font: 16px Georgia, serif; }
+    .album-tail { margin: 46px auto 0; font: italic 18px/1.6 Georgia, serif; color: var(--muted); }
+
+    .closing { text-align: center; padding: 0 20px 105px; }
+    .closing .overline { text-transform: uppercase; letter-spacing: .2em; font-size: 11px; color: var(--rose); font-weight: bold; }
+    .closing h2 { font: 400 clamp(30px, 5.5vw, 53px)/1.16 Georgia, serif; letter-spacing: -.04em; margin: 18px auto 23px; max-width: 650px; }
+    .closing h2 em { color: var(--rose); }
+    .closing p { color: var(--muted); font: italic 17px/1.7 Georgia, serif; max-width: 550px; margin: 0 auto 29px; }
+    .backtop { background: transparent; border: 0; cursor: pointer; border-bottom: 1px solid var(--rose); padding: 7px; color: var(--rose-deep); font-size: 13px; letter-spacing: .035em; }
+    footer { border-top: 1px solid var(--line); padding: 25px 20px 30px; display: flex; justify-content: center; gap: 11px; align-items: center; flex-wrap: wrap; color: var(--muted); font: italic 14px Georgia, serif; text-align: center; }
+    footer span { color: var(--rose); }
+    .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .js .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 900px) {
+      .top-date { display: none; }
+      .hero { grid-template-columns: 1fr; text-align: center; padding: 55px 6% 60px; gap: 18px; }
+      .hero-copy { display: flex; align-items: center; flex-direction: column; }
+      .hero-subtitle { margin: 0 auto; }
+      .hero-meta { justify-content: center; }
+      .eyebrow::before { display: none; }
+      .hero-art { min-height: 390px; order: -1; }
+      .envelope-button { width: min(75%, 390px); }
+      .art-aura { width: 400px; max-width: 95%; }
+      .art-ring { width: 390px; max-width: 90%; }
+      .art-note { right: 13%; bottom: 0; }
+      .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 27px 22px; }
+    }
+    @media (max-width: 560px) {
+      .topbar { height: 67px; padding: 0 21px; }
+      .brand { font-size: 15px; gap: 8px; }
+      .brand-mark { width: 26px; height: 26px; font-size: 17px; }
+      .music-dock { right: 14px; bottom: max(14px, env(safe-area-inset-bottom)); }
+      .music-trigger { padding: 15px 19px; font-size: 14px; gap: 9px; }
+      .music-trigger .music-note { font-size: 23px; }
+      .hero { padding: 9px 24px 48px; }
+      .hero-art { min-height: 312px; width: 100%; }
+      .envelope-button { width: min(86%, 320px); }
+      .art-aura { width: 320px; }
+      .art-ring { width: 300px; }
+      .art-spark.s1 { right: 13px; top: 28px; }
+      .art-spark.s2 { left: 13px; bottom: 16px; }
+      .art-spark.s3 { top: 15px; left: 21px; }
+      .art-note { bottom: -5px; right: 5px; font-size: 13px; }
+      h1 { font-size: clamp(50px, 13vw, 72px); margin: 20px 0; }
+      .hero-subtitle { font-size: 19px; }
+      .hero-meta { font-size: 12px; margin: 22px 0 28px; }
+      .actions { justify-content: center; width: 100%; }
+      .primary-btn, .secondary-btn { padding: 14px 20px; font-size: 14px; }
+      .chapter-intro { padding: 34px 20px 44px; }
+      .chapter-intro p { font-size: 16px; }
+      .letter-wrap { padding: 0 12px 65px; }
+      .letter-page { padding: 49px 28px 54px; }
+      .letter-page::before { inset: 9px; }
+      .letter-page::after { inset: 12px; }
+      .letter-date { font-size: 12px; }
+      .letter-salutation { margin-top: 36px; font-size: 30px; }
+      .letter-content p { font-size: 16px; line-height: 1.85; margin-bottom: 21px; }
+      .letter-content h2 { font-size: 29px; margin: 43px 0 20px; }
+      .quote { padding: 19px; font-size: 21px; }
+      .love-list { font-size: 18px; padding: 21px; }
+      .signature .sign-name { font-size: 26px; }
+      .album { width: min(100% - 38px, 430px); margin: 0 auto 73px; }
+      .album h2 { font-size: 37px; }
+      .album-intro { font-size: 16px; margin-bottom: 33px; }
+      .photo-grid { grid-template-columns: 1fr; gap: 25px; }
+      .photo-card { max-width: 370px; width: 100%; margin-inline: auto; }
+      .album-tail { font-size: 16px; }
+      .closing { padding-bottom: 65px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+      .js .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="site-shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">♡</span> Un pedacito de mi corazón</div>
+      <div class="top-date">23 de febrero de 2022 — 15 de noviembre de 2026</div>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="Presentación de la carta">
+        <div class="hero-copy">
+          <div class="eyebrow">Una carta para mi chipilona, con todo mi amor</div>
+          <h1>Para mi <em>princesita peshiosha.</em></h1>
+          <p class="hero-subtitle">Hay historias que, incluso en sus días más difíciles, siguen viviendo en lo más bonito de nosotros.</p>
+          <div class="hero-meta">
+            <span>Desde el 23.02.2022</span>
+            <span class="divider-dot">✦</span>
+            <span>4 años, 8 meses y 23 días de historia</span>
+          </div>
+          <div class="actions">
+            <button type="button" class="primary-btn" id="readButton">Abrir mi corazón &nbsp; ♡</button>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="false">
+          <div class="art-aura" aria-hidden="true"></div>
+          <div class="art-ring" aria-hidden="true"></div>
+          <span class="art-spark s1" aria-hidden="true">✧</span>
+          <span class="art-spark s2" aria-hidden="true">✦</span>
+          <span class="art-spark s3" aria-hidden="true">✧</span>
+          <button type="button" class="envelope-button" id="envelopeButton" aria-label="Abrir y leer la carta">
+            <span class="letter-peek"><span class="little-heart">♡</span><small>Para ti, mi amor</small></span>
+            <span class="envelope"><span class="env-corner"></span><span class="env-corner right"></span></span>
+            <span class="seal">♡</span>
+          </button>
+          <div class="art-note">Hecha con amor, para ti ♡</div>
+        </div>
+      </section>
+
+      <div class="chapter-intro reveal">
+        <span class="tiny-heart">❦</span>
+        <p>Si pudiera abrazarte a través de estas palabras que te dire, lo haría.</p>
+      </div>
+
+      <div class="letter-wrap" id="carta">
+        <article class="letter-page" aria-label="Carta de amor y disculpas">
+          <div class="letter-content" id="letterContent">
+            <div class="letter-date">15 de noviembre de 2026</div>
+            <div class="letter-salutation">Hola, mi princesita… ♡</div>
+
+            <p class="first-letter">Te escribo con el corazón en las manos, con un nudo en la garganta y con tantas cosas guardadas que ni siquiera sé por dónde empezar. He pensado en nosotros todos estos dias, vuelvo a aquel 23 de febrero de 2022. Desde entonces han pasado cuatro años, ocho meses y veintitrés días. Y aunque ahora no seamos novios, aunque estemos atravesando probablemente el momento más difícil de nuestra historia, quiero que sepas algo que no ha cambiado: <em>no he dejado de amarte ni un poquito nada nada.</em></p>
+
+            <p>Sé que quizá no quieras saber de mí en este momento, y entiendo que puedas necesitar distancia. No te escribo para exigirte una respuesta ni para pedirte que todo vuelva a ser como antes de un día para otro. Te escribo porque te amo, porque te extraño muchísimo y porque hay una disculpa que quiero darte de verdad.</p>
+
+            <h2>Primero, perdóname.</h2>
+
+            <p>Perdón por lastimarte, por hacerte sentir mal y por cada ocasión en la que mis errores te hicieron dudar, llorar o perder la tranquilidad que merecías. Me duele saber que una persona a la que amo tanto haya sufrido tanto por mí. No quiero esconderme detrás de excusas, porque aunque pueda haber cosas que se hayan entendido de una manera distinta a como sucedieron, lo que tú sentiste es real y merece todo mi respeto.</p>
+
+            <p>Quiero que sepas que no he estado hablando con nadie más. Me habría gustado que pudieras ver los otros mensajes y que pudiéramos aclarar con calma lo sucedido. Pero antes de intentar explicarte nada, quiero escucharte a ti. Quiero reconocer lo que hice mal y hacerme responsable de mis errores, sin minimizar tus sentimientos.</p>
+
+            <p>También pienso mucho en aquella etapa en la que pudimos vivir juntos. Era uno de mis sueños más grandes, tenerte cerquita todos los días, y sé que cometí errores que dañaron algo muy bonito. Me arrepiento profundamente. Si alguna vez tenemos otra oportunidad, no quiero que se sostenga solo con promesas bonitas: quiero aprender, cambiar lo que deba cambiar y demostrarte con hechos que sé cuidar mejor lo nuestro, quiero que mejoremos juntos cada dia y sigamos aprendiendo.</p>
+
+            <div class="ornament" aria-hidden="true">♡</div>
+
+            <h2>Me acuerdo de aquella noche…</h2>
+
+            <p>¿Sabes? A veces cierro los ojos y vuelvo a aquella fiesta donde te conocí. Jamás imaginé que esa noche iba a encontrar al amor de mi vida. Apenas te vi, sentí algo imposible de explicar. Tu manera de vestir, de hablar, tu carita tan hermosa… todo en ti me llamó la atención. Me emocioné tanto que casi inmediatamente le hablé a Enrique para contarle xD. Y sigo pensando que la forma en la que te saludé fue bastante ridícula, pero ese primer acercamiento y sentir tu mano me encantó más de lo que te imaginas xD</p>
+
+            <p>Después empezamos a hablar y descubrí que teníamos gustos parecidos. Eso fue como echarle más leña al fuego… Y hablando de fuego, <em>¡todavía no entiendo cómo no te quemabas estando tan pegadita a la lumbre!</em> XDD.</p>
+
+            <p>Recuerdo la caminata, lo feliz que me puse al saber que regresaríamos juntos, tu manera de caminar y ese amor tan tuyo por el café, con tu termito que llevabas toda preciosa. Y, sobre todo, recuerdo aquel momento en que me dijiste: “Pero no tengo tu número”, y yo nomas de: “Pásamelo”. xDDD. Ay, mi niña, escribo esto sonriendo y con los ojos llenos de lágrimas. Qué bonito fue encontrarte. Y pensar que eso fue apenas el primer día de nuestra historia.</p>
+
+            <div class="quote">Si pudiera volver a esa noche, volvería a elegirte.</div>
+
+            <h2>Hay tantas cosas que amo de ti.</h2>
+
+            <p>Amo tu carita, tus ojitos, tu cabello y esa sonrisa hermosa que hace que se me olvide todo lo demás. Amo hacer estupideces solo para verte reír. Amo cuando te eres tontita como niña chiquita, cuando estás chipilona y cuando me regañas por mis pendejadas aveces. Amo tu sinceridad, tu inteligencia, tu forma de hablar, lo buena que eres, lo que me enseñas sin siquiera darte cuenta y esa manera tan especial que tienes de cuidarme.</p>
+
+            <p>Amo tu comida, nuestras conversaciones, nuestros silencios cómodos, jugar contigo, las pequeñas costumbres que fuimos inventando. Amo cuidarte, abrazarte, escucharte, estar pendiente de cómo te fue y decirte todas esas cosas bonitas que llevo tantos días guardándome. Extraño a mi princesita, sí, pero también extraño a mi mejor amiga, a mi compañera de vida, a la persona con la que podía compartir desde una pendejada random hasta las cosas que mas queria hacer.</p>
+
+            <div class="love-list">Amo tu risa. Amo tu corazón. Amo tus ocurrencias. Amo aprender de ti. Amo la persona que eres, incluso en esos días en que tú misma no alcanzas a ver lo maravillosa que eres. ♡</div>
+
+            <h2>Y todavía sueño contigo.</h2>
+
+            <p>Sigo imaginando nuestra casita, mejorándola poquito a poquito, llenándola de detalles que se sientan nuestros. Probablemente terminaríamos pintándola de rosa pastel, porque te conozco jeje. Me imagino despertando a tu lado, dándote un besito cada mañana, preparando café y preguntándote qué se te antoja hacer ese día.</p>
+
+            <p>Sueño con abrir contigo un lugarcito donde vendamos café y cositas bonitas; con ese gato pelón con el que tanto te molesto; con una que otra ratita porque sé cuánto te gustan… aunque habría que vigilar que el gato no se las fuera a comer xD. Me imagino los proyectos, los viajes, las tardes tranquilas, las salidas a acampar, los planes improvisados y las mil historias que todavía podríamos hacer.</p>
+
+            <p>Uno de mis mas grandes sueños es ir de viaje a Japón contigo, caminando por calles que antes solo habíamos visto en fotos, probando comida nueva, comprando recuerdos, descubriendo lugares increíbles y pendejear a los japoneses y que no nos entiendan xDD. También quiero ir contigo a España, comprar ColaCao, conocer al Catorces y regresar llenos de recuerdos, fotos y cosas que contar una y otra vez.</p>
+
+            <p>Te extrañamos, no solo yo, Fido y Perrit, que también son parte de tantas cosas bonitas. Mi ma y mi pa preguntan por ti; te tienen un cariño enorme porque tú también te volviste parte de nuestra familia. Y a mí me gustaría, si la vida y tú nos lo permiten, seguir formando parte de la tuya. No te lo digo para hacerte sentir obligada a nada, sino para que sepas lo importante que has sido para todos nosotros.</p>
+
+            <div class="ornament" aria-hidden="true">✿</div>
+
+            <h2>Si algún día volvemos a encontrarnos…</h2>
+
+            <p>Me gustaría volver a elegirte con más madurez, más paciencia y más cuidado. Me gustaría darte ese abrazo que llevo tanto tiempo imaginando. Me gustaría volver a llamarte mi mujer, mirarte a los ojos y construir algo que nos haga bien a los dos.</p>
+
+            <p>Y sí, mi niña preciosa, todavía recuerdo cuando te pedí matrimonio en la calle, afuera de tu escuela jeje :’3. Si algún día los dos queremos retomar ese camino, me encantaría hacerte mi prometida otra vez, con una propuesta más bonita y más adecuada, de esas que se quedan guardadas para siempre en el corazón. No porque quiera apresurar nada, sino porque contigo llegué a imaginar una vida entera.</p>
+
+            <p>Pero antes que cualquiera de esos sueños, está algo que quiero que tengas muy claro: <em>tu tranquilidad importa.</em> No te pido que olvides lo que pasó, que confíes en mí inmediatamente ni que me perdones hoy. Entiendo que el amor también significa respetar tus tiempos y aceptar que la decisión es tuya. Si algún día quieres hablar, quiero escucharte de verdad. Y si algún día decides darnos una nueva oportunidad, quiero ganármela con acciones, no solamente con esta carta.</p>
+
+            <p>Te extraño demasiado. Extraño saber de ti, cuidarte, escucharte reír, hacerte sonreír, abrazarte fuerte y decirte al oído cuánto te adoro. Tengo tanto que contarte, tanto que aprender y tantas disculpas pendientes de convertir en cambios reales.</p>
+
+            <p>Gracias por cada uno de los momentos hermosos que hemos vivido, por aquella noche en la fiesta, por todo lo que haz hechi por mi, por lo que me enseñaste y por las veces que me hiciste sentir en casa. Pase lo que pase, nuestra historia ha dejado una huella preciosa en mí, nunca lo olvidare.</p>
+
+            <p>Si algún día quieres volver, aquí encontrarás a alguien dispuesto a hacer las cosas mejor. Y si eliges otro camino, también quiero que estés bien, que sonrías mucho y que nunca olvides lo valiosa que eres. Lo que siento por ti es inmenso, pero no quiero que se convierta en una carga para ti, yo deseo tu felicidad mi princesita.</p>
+
+            <p><em>Te amo, mi princesita peshiosha. Te adoro, mi niña chiquita chipilona. Y si pudiera pedir un deseo, sería tener la oportunidad de escribir contigo un capítulo nuevo, lleno de ese amor que alguna vez nos hizo tan felices, de deseo lo mejor, mi amor por ti siempre fue real, perdon si esto no es algo muy profesional, pero te hice esta carta con todo mi corazon, espero de haya gustado mi tesorito.</em></p>
+
+            <div class="signature">
+              <p>De todo corazón, con todo mi amor,</p>
+              <span class="sign-name">Tu obsesionado esposhito que te adora tanto</span>
+              <span class="sign-spark">❤️ ✨ 🌸</span>
+            </div>
+          </div>
+          <div class="end-flower" aria-hidden="true">❦</div>
+        </article>
+      </div>
+
+      <!-- ÁLBUM: coloca las fotos en dist/fotos/ con los nombres indicados en LEEME.txt. -->
+      <section class="album" id="album" aria-label="Nuestro álbum de recuerdos">
+        <div class="album-eyebrow">Pequeños momentitos</div>
+        <h2>Nuestro álbum♡</h2>
+        <p class="album-intro">Algunas fotitos nuestras.</p>
+        <div class="photo-grid">
+          <figure class="photo-card">
+            <div class="photo-frame"><img src="fotos/01-aquella-noche.jpg" alt="Un recuerdo de la noche en que nos conocimos" loading="lazy" decoding="async"><div class="photo-empty" aria-hidden="true"><span class="placeholder-flower">✧</span></div></div>
+          </figure>
+          <figure class="photo-card">
+            <div class="photo-frame"><img src="fotos/02-tu-sonrisa.jpg" alt="Tu sonrisa hermosa" loading="lazy" decoding="async"><div class="photo-empty" aria-hidden="true"><span class="placeholder-flower">♡</span></div></div>
+          </figure>
+          <figure class="photo-card">
+            <div class="photo-frame"><img src="fotos/03-aventuras.jpg" alt="Una aventura que vivimos juntos" loading="lazy" decoding="async"><div class="photo-empty" aria-hidden="true"><span class="placeholder-flower">❀</span></div></div>
+          </figure>
+          <figure class="photo-card">
+            <div class="photo-frame"><img src="fotos/04-nosotros.jpg" alt="Una foto bonita de nosotros dos" loading="lazy" decoding="async"><div class="photo-empty" aria-hidden="true"><span class="placeholder-flower">✿</span></div></div>
+          </figure>
+          <figure class="photo-card">
+            <div class="photo-frame"><img src="fotos/05-fido-perrit.jpg" alt="Fido, Perrit y la familia" loading="lazy" decoding="async"><div class="photo-empty" aria-hidden="true"><span class="placeholder-flower">☼</span></div></div>
+          </figure>
+          <figure class="photo-card">
+            <div class="photo-frame"><img src="fotos/06-recuerdos.jpg" alt="Otro momento muy especial de nuestra historia" loading="lazy" decoding="async"><div class="photo-empty" aria-hidden="true"><span class="placeholder-flower">✦</span></div></div>
+          </figure>
+        </div>
+        <p class="album-tail">Y ojalá algún día tengamos nuevas fotos que poner aquí. ♡</p>
+      </section>
+
+      <section class="closing reveal" aria-label="Despedida">
+        <div class="overline">Una historia que siempre llevaré conmigo</div>
+        <h2>Desde aquella noche, <em>mi corazón te recuerda.</em></h2>
+        <p>23 de febrero de 2022 — y todos los recuerdos que caben entre ese día y hoy.</p>
+        <button type="button" class="backtop" id="backTop">Volver al principio ↑</button>
+      </section>
+    </main>
+
+    <div class="music-dock">
+      <p class="music-status" id="musicStatus" role="status" hidden></p>
+      <button class="music-trigger" id="musicToggle" type="button" aria-pressed="false">
+        <span class="music-note" aria-hidden="true">♫</span>
+        <span id="musicLabel">Te la dedico, click por favor</span>
+      </button>
+      <!-- Coloca tu archivo MP3 en dist/musica/nuestra-cancion.mp3. -->
+      <audio id="loveSong" src="musica/nuestra-cancion.mp3" preload="none"></audio>
+    </div>
+
+    <footer>Hecho con amor, recuerdos y esperanza <span>♡</span> 15 de noviembre de 2026</footer>
+  </div>
+
+  <script>
+    document.documentElement.classList.add('js');
+    const scrollToLetter = () => document.querySelector('#carta').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    document.querySelector('#readButton').addEventListener('click', scrollToLetter);
+    document.querySelector('#envelopeButton').addEventListener('click', scrollToLetter);
+    document.querySelector('#backTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }));
+
+    // Reproduce el MP3 local cuando el visitante lo solicite (sin autoplay).
+    const musicToggle = document.querySelector('#musicToggle');
+    const musicLabel = document.querySelector('#musicLabel');
+    const loveSong = document.querySelector('#loveSong');
+    const musicStatus = document.querySelector('#musicStatus');
+    let musicStatusTimeout;
+    const showMusicStatus = (message) => {
+      window.clearTimeout(musicStatusTimeout);
+      musicStatus.textContent = message;
+      musicStatus.hidden = false;
+      musicStatusTimeout = window.setTimeout(() => musicStatus.hidden = true, 6500);
+    };
+    const updateMusicButton = (playing) => {
+      musicToggle.classList.toggle('is-playing', playing);
+      musicToggle.setAttribute('aria-pressed', String(playing));
+      musicLabel.textContent = playing ? 'Pausar nuestra canción' : 'Reproducir nuestra canción';
+    };
+    musicToggle.addEventListener('click', async () => {
+      if (!loveSong.paused) { loveSong.pause(); return; }
+      try {
+        await loveSong.play();
+        musicStatus.hidden = true;
+      } catch (_) {
+        updateMusicButton(false);
+        showMusicStatus('Primero agrega tu MP3 en musica/nuestra-cancion.mp3 y recarga la página. ♡');
+      }
+    });
+    loveSong.addEventListener('playing', () => updateMusicButton(true));
+    loveSong.addEventListener('pause', () => updateMusicButton(false));
+    loveSong.addEventListener('ended', () => updateMusicButton(false));
+
+    // Fotos: basta con colocar cada JPG en dist/fotos/ y actualizar la página.
+    document.querySelectorAll('.photo-frame img').forEach(photo => {
+      const showPhoto = () => { if (photo.naturalWidth > 0) photo.parentElement.classList.add('has-photo'); };
+      photo.addEventListener('load', showPhoto);
+      if (photo.complete) showPhoto();
+    });
+
+    const copyButton = document.querySelector('#copyButton');
+    copyButton.addEventListener('click', async () => {
+      const content = document.querySelector('#letterContent');
+      const original = copyButton.textContent;
+      const text = content.innerText.trim();
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const input = document.createElement('textarea');
+          input.value = text; input.style.position = 'fixed'; input.style.opacity = '0';
+          document.body.appendChild(input); input.select();
+          const copied = document.execCommand('copy');
+          input.remove();
+          if (!copied) throw new Error('No se pudo copiar');
+        }
+        copyButton.textContent = '¡Carta copiada! ♡';
+      } catch (_) {
+        copyButton.textContent = 'Selecciona el texto para copiar';
+      }
+      window.setTimeout(() => copyButton.textContent = original, 2500);
+    });
+
+    const progress = document.querySelector('#progress');
+    const updateProgress = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = `${max > 0 ? Math.min(100, window.scrollY / max * 100) : 100}%`;
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      }, { threshold: .15 });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
+  </script>
+</body>
+</html>

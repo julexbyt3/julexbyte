@@ -1,0 +1,26 @@
+INSTRUCCIONES PARA PONER TUS FOTOS
+
+1. Guarda tus fotografías en esta misma carpeta: dist/fotos/
+2. Renómbralas exactamente como se indica debajo.
+3. Actualiza la página en el navegador. Los espacios se rellenan automáticamente.
+
+Archivos esperados:
+  01-aquella-noche.jpg  - Donde empezó todo
+  02-tu-sonrisa.jpg     - Mi sonrisa favorita
+  03-aventuras.jpg      - Nuestras aventuras
+  04-nosotros.jpg       - Tú, yo y nuestro mundo
+  05-fido-perrit.jpg    - La familia que formamos
+  06-recuerdos.jpg      - Los recuerdos que atesoro
+
+Usa imágenes JPG. Si tus fotos son PNG o HEIC, conviértelas a JPG
+o cambia la extensión correspondiente en dist/index.html.
+
+TIP: las fotos en vertical funcionan especialmente bien.
+No necesitas editar CSS ni JavaScript.
+
+MUSICA
+Ahora la canción se reproduce desde el archivo MP3 que tú agregues.
+Consulta dist/musica/LEEME.txt para las instrucciones.
+
+Importante: Si agregas fotos en tu equipo, debes subir una nueva versión
+del sitio para que también se vean en el enlace publicado.

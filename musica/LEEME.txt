@@ -1,0 +1,17 @@
+TU CANCION PERSONALIZADA
+
+1. Coloca tu audio en esta carpeta: dist/musica/
+2. Ponle exactamente este nombre: nuestra-cancion.mp3
+3. Abre o actualiza dist/index.html en Firefox o Chrome.
+4. Pulsa el botón rosa "Reproducir nuestra canción".
+
+La canción NO se reproduce automáticamente al abrir la carta.
+El botón permite reproducirla y pausarla cuando quieras.
+
+Si tu archivo está en WAV, OGG, M4A u otro formato, lo más fácil es
+convertirlo a MP3. También puedes editar la ruta del atributo src en
+el elemento <audio id="loveSong"> dentro de dist/index.html.
+
+Si quieres que el audio se escuche desde el sitio publicado, agrega
+el archivo MP3 al proyecto y vuelve a publicar el sitio actualizado.
+Actualmente se deja vacío a propósito para que subas tu canción.
